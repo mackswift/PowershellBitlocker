@@ -1,0 +1,13 @@
+Invoke-Command -Computer TL-UTSHIP1 -Credential $Creds {manage-bde -status}
+
+Invoke-Command -Computer TL-PRPRTSM -Credential $Creds {manage-bde -Protectors -add C: -rp}
+
+Invoke-Command -Computer TL-PRPRTSM -Credential $Creds {manage-bde -protectors -adbackup C: -id '{5574F5E7-8D67-4108-BAB2-C7A67F236D04}'}
+
+Invoke-Command -Computer TL-PRPRTSM -Credential $Creds {manage-bde -protectors -aadbackup C: -id '{5574F5E7-8D67-4108-BAB2-C7A67F236D04}'}
+
+Invoke-Command -Computer TL-PRPRTSM -Credential $Creds {Enable-BitLocker -MountPoint "C:" -EncryptionMethod Aes128 -TpmProtector}
+
+Invoke-Command -Computer TL-PRPRTSM -Credential $Creds {manage-bde -on C:}
+
+Invoke-Command -Computer TL-PRPRTSM -Credential $Creds {manage-bde -status}
